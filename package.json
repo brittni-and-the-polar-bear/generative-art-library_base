@@ -2,7 +2,15 @@
   "name": "@batpb/genart-base",
   "version": "0.1.0",
   "description": "Base classes and methods for the brittni and the polar bear generative art library.",
-  "main": "index.js",
+  "main": "./out/dist/index.js",
+  "types": "./out/dist/index.d.ts",
+  "files": [
+    "./out/dist/index.js",
+    "./out/dist/index.d.ts",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
