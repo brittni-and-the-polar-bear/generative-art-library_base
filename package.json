@@ -1,0 +1,22 @@
+{
+  "name": "@batpb/genart-base",
+  "version": "0.1.0",
+  "description": "Base classes and methods for the brittni and the polar bear generative art library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brittni-and-the-polar-bear/generative-art-library_base.git"
+  },
+  "keywords": [
+    "fun"
+  ],
+  "author": "brittni and the polar bear",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/brittni-and-the-polar-bear/generative-art-library_base/issues"
+  },
+  "homepage": "https://github.com/brittni-and-the-polar-bear/generative-art-library_base#readme"
+}
