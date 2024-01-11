@@ -13,7 +13,20 @@
   "keywords": [
     "fun"
   ],
-  "author": "brittni and the polar bear",
+  "author": {
+    "name": "brittni and the polar bear",
+    "url": "https://linktr.ee/brittniandthepolarbear"
+  },
+  "contributors": [
+    {
+      "name": "brittni watkins",
+      "url": "https://linktr.ee/brittniwatkins"
+    },
+    {
+      "name": "azurepolarbear",
+      "url": "https://linktr.ee/azurepolarbear"
+    }
+  ],
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/brittni-and-the-polar-bear/generative-art-library_base/issues"
