@@ -12,6 +12,14 @@
     "README.md"
   ],
   "scripts": {
+    "build:source": "echo \"Error: no build:source specified\" && exit 1",
+    "build:types": "echo \"Error: no build:types specified\" && exit 1",
+
+    "lint:source": "echo \"Error: no lint:source specified\" && exit 1",
+    "lint:tests": "echo \"Error: no lint:tests specified\" && exit 1",
+
+    "prepack": "npm run build:source; npm run build:types",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
