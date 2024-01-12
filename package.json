@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build:source": "rm -r ./out; npx tsc",
-    "build:types": "echo \"Error: no build:types specified\" && exit 1",
+    "build:types": "rm -r ./api; npx api-extractor run --local --verbose",
 
     "lint": "npx eslint ./src",
 
