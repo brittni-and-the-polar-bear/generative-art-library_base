@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es6",
+    "paths": {
+    },
+    /* Modules */
+    "module": "es6",
+    "moduleResolution": "node",
+    "rootDirs": [
+      "./src"
+    ],
+    /* Emit */
+    "outDir": "./out/dist",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./out/types",
+    "removeComments": false,
+    "noEmitOnError": true,
+    "preserveConstEnums": true,
+    /* Interop Constraints */
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "allowUnreachableCode": false
+  }
+}
