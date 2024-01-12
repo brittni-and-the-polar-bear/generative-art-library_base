@@ -5,11 +5,11 @@
   "main": "./out/dist/index.js",
   "types": "./out/dist/index.d.ts",
   "files": [
-    "./out/dist/index.js",
-    "./out/dist/index.d.ts",
-    "LICENSE",
-    "package.json",
-    "README.md"
+    "./out/dist/**",
+    "./LICENSE",
+    "./package.json",
+    "./package-lock.json",
+    "./README.md"
   ],
   "scripts": {
     "build:source": "rm -r ./out; npx tsc",
