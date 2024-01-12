@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "build:source": "echo \"Error: no build:source specified\" && exit 1",
+    "build:source": "npx tsc",
     "build:types": "echo \"Error: no build:types specified\" && exit 1",
 
     "lint:source": "echo \"Error: no lint:source specified\" && exit 1",
