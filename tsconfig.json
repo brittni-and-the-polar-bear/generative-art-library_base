@@ -4,12 +4,14 @@
     "target": "es6",
     "paths": {
     },
+
     /* Modules */
     "module": "es6",
     "moduleResolution": "node",
     "rootDirs": [
       "./src"
     ],
+
     /* Emit */
     "outDir": "./out/dist",
     "sourceMap": true,
@@ -19,10 +21,12 @@
     "removeComments": false,
     "noEmitOnError": true,
     "preserveConstEnums": true,
+
     /* Interop Constraints */
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+
     /* Type Checking */
     "strict": true,
     "noImplicitAny": true,
