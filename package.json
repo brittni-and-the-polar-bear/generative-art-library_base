@@ -12,11 +12,10 @@
     "README.md"
   ],
   "scripts": {
-    "build:source": "npx tsc",
+    "build:source": "rm -r ./out; npx tsc",
     "build:types": "echo \"Error: no build:types specified\" && exit 1",
 
-    "lint:source": "echo \"Error: no lint:source specified\" && exit 1",
-    "lint:tests": "echo \"Error: no lint:tests specified\" && exit 1",
+    "lint": "npx eslint ./src",
 
     "prepack": "npm run build:source; npm run build:types",
 
