@@ -10,3 +10,7 @@ node_modules/
 out/
 dist/
 types/
+
+# api extractor
+api/temp/
+api/genart-base.api.json
