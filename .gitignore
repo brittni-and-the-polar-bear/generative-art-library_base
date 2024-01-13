@@ -13,3 +13,6 @@ types/
 
 # api extractor
 api/temp/
+
+# jest
+src/**/*.js
