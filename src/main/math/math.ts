@@ -17,8 +17,8 @@
 
 /**
  * @public
- * @param row - current row number
- * @param column - current column number
+ * @param row - current row number. rows are zero-indexed; the first row is row 0.
+ * @param column - current column number. columns are zero-indexed; the first column is column 0.
  * @param totalRows - total number of rows
  * @param totalColumns - total number of columns
  */
@@ -26,15 +26,15 @@ function getSingleDimensionIndex(row: number,
                                  column: number,
                                  totalRows: number,
                                  totalColumns: number): number | undefined {
-    const maxIndex: number = (totalRows * totalColumns) - 1;
-    let index: number | undefined = (row * totalRows) + column;
+    let index: number | undefined = undefined;
 
-    if (index && index > maxIndex) {
-        index = undefined;
+    if (row >= 0 && column >= 0
+        && row < totalRows
+        && column < totalColumns) {
+        index = (row * totalColumns) + column;
     }
 
     return index;
 }
 
 export {getSingleDimensionIndex};
-

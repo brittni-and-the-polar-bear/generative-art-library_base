@@ -7,6 +7,9 @@
 import P5Lib from 'p5';
 
 // @public (undocumented)
+export function getSingleDimensionIndex(row: number, column: number, totalRows: number, totalColumns: number): number | undefined;
+
+// @public (undocumented)
 export class SketchContext {
     // (undocumented)
     static initialize(p5: P5Lib): void;
