@@ -5,6 +5,7 @@
       "./tsconfig.json"
     ]
   },
+  "ignorePatterns": ["*.js"],
   "plugins": [
     "@typescript-eslint"
   ],
