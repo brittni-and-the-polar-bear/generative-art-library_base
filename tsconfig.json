@@ -3,6 +3,7 @@
     /* Language and Environment */
     "target": "es6",
     "paths": {
+      "math": ["./src/main/math"]
     },
 
     /* Modules */
