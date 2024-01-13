@@ -16,3 +16,4 @@
  */
 
 export * from './p5';
+export * from './math';
