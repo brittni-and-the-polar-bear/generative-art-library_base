@@ -15,3 +15,26 @@
  * See the GNU Affero General Public License for more details.
  */
 
+/**
+ * @public
+ * @param row - current row number
+ * @param column - current column number
+ * @param totalRows - total number of rows
+ * @param totalColumns - total number of columns
+ */
+function getSingleDimensionIndex(row: number,
+                                 column: number,
+                                 totalRows: number,
+                                 totalColumns: number): number | undefined {
+    const maxIndex: number = (totalRows * totalColumns) - 1;
+    let index: number | undefined = (row * totalRows) + column;
+
+    if (index && index > maxIndex) {
+        index = undefined;
+    }
+
+    return index;
+}
+
+export {getSingleDimensionIndex};
+
