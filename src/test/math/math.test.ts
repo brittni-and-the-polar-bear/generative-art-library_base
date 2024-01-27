@@ -31,7 +31,8 @@ describe('math tests', (): void => {
         {row: 1, column: 2, totalRows: 1, totalColumns: 3, expected: undefined},
         {row: 1, column: 5, totalRows: 4, totalColumns: 3, expected: undefined},
         {row: 5, column: 5, totalRows: 4, totalColumns: 3, expected: undefined},
-        {row: 3, column: 2, totalRows: 4, totalColumns: 3, expected: 11}
+        {row: 3, column: 2, totalRows: 4, totalColumns: 3, expected: 11},
+        {row: 3, column: 2, totalRows: 4, totalColumns: 3, expected: undefined} // failure test. remove later.
     ])('$# getSingleDimensionIndex($row, $column, $totalRows, $totalColumns)',
         ({row,
              column,
