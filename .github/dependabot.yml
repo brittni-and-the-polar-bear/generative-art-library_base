@@ -31,3 +31,14 @@ updates:
     reviewers:
       - "blwatkins"
       - "azurepolarbear"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "dependabot github-action update"
+      include: "scope"
+    reviewers:
+      - "blwatkins"
+      - "azurepolarbear"
