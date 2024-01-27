@@ -9,6 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    target-branch: "development-main"
     allow:
       - dependency-type: "all"
     versioning-strategy: increase
@@ -36,6 +37,7 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    target-branch: "development-main"
     commit-message:
       prefix: "dependabot github-action update"
       include: "scope"
