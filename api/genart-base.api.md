@@ -7,6 +7,30 @@
 import P5Lib from 'p5';
 
 // @public (undocumented)
+export class Color {
+    constructor(color?: P5Lib.Color);
+    // (undocumented)
+    get alpha(): number;
+    set alpha(a: number);
+    // (undocumented)
+    get blue(): number;
+    set blue(b: number);
+    // (undocumented)
+    get color(): P5Lib.Color;
+    set color(c: P5Lib.Color);
+    // (undocumented)
+    static getHSLAColor(h: number, s: number, l: number, a: number): P5Lib.Color;
+    // (undocumented)
+    static getHSLColor(h: number, s: number, l: number, a?: number): P5Lib.Color;
+    // (undocumented)
+    get green(): number;
+    set green(g: number);
+    // (undocumented)
+    get red(): number;
+    set red(r: number);
+}
+
+// @public (undocumented)
 export function getSingleDimensionIndex(row: number, column: number, totalRows: number, totalColumns: number): number | undefined;
 
 // @public (undocumented)

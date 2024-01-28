@@ -5,9 +5,13 @@ name: Node.js Build and Test
 
 on:
   push:
-    branches: [ "main", "development-main" ]
+    branches:
+      - "main"
+      - "development-main"
   pull_request:
-    branches: [ "main", "development-main" ]
+    branches:
+      - "main"
+      - "development-main"
 
 jobs:
   build:
