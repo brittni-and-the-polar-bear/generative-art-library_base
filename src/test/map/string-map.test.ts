@@ -70,27 +70,44 @@ describe('string-map tests', (): void => {
 
     test('set undefined key', (): void => {
         const map: StringMap<number> = new StringMap<number>();
+        const logSpy = jest.spyOn(global.console, 'warn');
 
         const key1: string = 'red';
         let result: boolean = map.setUndefinedKey(key1, 50);
         expect(result).toBeTruthy();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockClear();
 
         result = map.setUndefinedKey(key1, 50);
         expect(result).toBeFalsy();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockClear();
 
         result = map.setUndefinedKey(key1, 100);
         expect(result).toBeFalsy();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockClear();
 
         const key2: string = 'blue';
-        result = map.setUndefinedKey(key2, 50, 'key already in map');
+        const errorMessage: string = 'key already in map';
+        result = map.setUndefinedKey(key2, 50, errorMessage);
         expect(result).toBeTruthy();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockClear();
 
         result = map.setUndefinedKey(key2, 50, 'key already in map');
         expect(result).toBeFalsy();
+        expect(logSpy).toHaveBeenCalled();
+        expect(logSpy).toHaveBeenCalledWith(errorMessage);
+        logSpy.mockClear();
 
         result = map.setUndefinedKey(key2, 100, 'key already in map');
         expect(result).toBeFalsy();
+        expect(logSpy).toHaveBeenCalled();
+        expect(logSpy).toHaveBeenCalledWith(errorMessage);
+        logSpy.mockClear();
 
         expect(map.size).toBe(2);
+        logSpy.mockRestore();
     });
 });
