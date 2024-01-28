@@ -47,4 +47,27 @@ describe('string-map tests', (): void => {
             expect(keys.has(key)).toBeTruthy();
         }
     });
+
+    test('values iterator', (): void => {
+        const map: StringMap<number> = new StringMap<number>();
+        const pairs: KeyValuePair[] = [
+            {key: 'carl', value: 10},
+            {key: 'bobby', value: 20},
+            {key: 'harold', value: 20}
+        ];
+
+        for (const pair of pairs) {
+            map.setUndefinedKey(pair.key, pair.value);
+        }
+
+        const values: Set<number> = new Set<number>(map.values);
+        const valuesList: number[] = Array.from(map.values);
+
+        expect(valuesList.length).toBe(pairs.length);
+
+        for (const pair of pairs) {
+            const value: number = pair.value;
+            expect(values.has(value)).toBeTruthy();
+        }
+    });
 });
