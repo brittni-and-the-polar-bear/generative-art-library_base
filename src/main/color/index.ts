@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Brittni Watkins.
+ * Copyright (C) 2023-2024 Brittni Watkins.
  *
  * This file is a part of brittni and the polar bear's Generative Art Library,
  * which is released under the GNU Affero General Public License, Version 3.0.
@@ -15,7 +15,4 @@
  * See the GNU Affero General Public License for more details.
  */
 
-export * from './math';
-
-export * from './p5';
 export * from './color';

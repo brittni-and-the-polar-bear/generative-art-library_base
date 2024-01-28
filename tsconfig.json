@@ -3,6 +3,8 @@
     /* Language and Environment */
     "target": "es6",
     "paths": {
+      "color": ["./src/main/color"],
+      "context": ["./src/main/p5"],
       "math": ["./src/main/math"]
     },
 
