@@ -42,10 +42,10 @@ class Color {
     }
 
     /**
-     * @param h some number between 0 and 360.
-     * @param s some number between 0 and 100.
-     * @param l some number between 0 and 100.
-     * @param a (optional) some number between 0 and 1.
+     * @param h - some number between 0 and 360.
+     * @param s - some number between 0 and 100.
+     * @param l - some number between 0 and 100.
+     * @param a - (optional) some number between 0 and 1.
      */
     public static getHSLColor(h: number, s: number, l: number, a?: number): P5Lib.Color {
         let color: P5Lib.Color;
@@ -64,10 +64,10 @@ class Color {
     }
 
     /**
-     * @param h some number between 0 and 360.
-     * @param s some number between 0 and 100.
-     * @param l some number between 0 and 100.
-     * @param a some number between 0 and 1.
+     * @param h - some number between 0 and 360.
+     * @param s - some number between 0 and 100.
+     * @param l - some number between 0 and 100.
+     * @param a - some number between 0 and 1.
      */
     public static getHSLAColor(h: number, s: number, l: number, a: number): P5Lib.Color {
         return Color.getHSLColor(h, s, l, a);

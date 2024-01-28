@@ -15,5 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-export * from './p5';
 export * from './math';
+
+export * from './p5';
+export * from './color';
