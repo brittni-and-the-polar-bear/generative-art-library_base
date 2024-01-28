@@ -26,6 +26,7 @@ const config: JestConfigWithTsJest = {
     moduleNameMapper: {
         '^color$': '<rootDir>/src/main/color',
         '^context$': '<rootDir>/src/main/p5',
+        '^map$': '<rootDir>/src/main/map',
         '^math$': '<rootDir>/src/main/math'
     },
     testEnvironment: 'jsdom',
