@@ -15,3 +15,36 @@
  * See the GNU Affero General Public License for more details.
  */
 
+import {StringMap} from "map";
+
+interface KeyValuePair {
+    readonly key: string,
+    readonly value: number
+}
+
+describe('string-map tests', (): void => {
+    test('empty map', (): void => {
+        const map: StringMap<number> = new StringMap<number>();
+        expect(map.size).toBe(0);
+    });
+
+    test('keys iterator', (): void => {
+        const map: StringMap<number> = new StringMap<number>();
+        const pairs: KeyValuePair[] = [
+            {key: 'carl', value: 10},
+            {key: 'bobby', value: 10},
+            {key: 'harold', value: 10}
+        ];
+
+        for (const pair of pairs) {
+            map.setUndefinedKey(pair.key, pair.value);
+        }
+
+        const keys: Set<string> = new Set<string>(map.keys);
+
+        for (const pair of pairs) {
+            const key: string = pair.key;
+            expect(keys.has(key)).toBeTruthy();
+        }
+    });
+});

@@ -33,15 +33,17 @@ class StringMap<ValueType> {
         return this.map.values();
     }
 
+    public get size(): number {
+        return this.map.size;
+    }
+
     /**
      * Associate the given `key` with the given `value` in the map
      * only if the key has not been set in the map.
-     * If an `errorMessage` is provided, it will be logged to the
-     * console if the key already has a value.
      *
-     * @param key
-     * @param value
-     * @param errorMessage
+     * @param key -
+     * @param value -
+     * @param errorMessage - optional. message to log if the key already has a value.
      * @returns `true` if the operation is successful, `false` if it is not.
      * @public
      */
