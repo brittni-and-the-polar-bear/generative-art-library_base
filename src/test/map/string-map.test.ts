@@ -43,8 +43,7 @@ describe('string-map tests', (): void => {
         const keys: Set<string> = new Set<string>(map.keys);
 
         for (const pair of pairs) {
-            const key: string = pair.key;
-            expect(keys.has(key)).toBeTruthy();
+            expect(keys).toContain(pair.key);
         }
     });
 
@@ -60,14 +59,38 @@ describe('string-map tests', (): void => {
             map.setUndefinedKey(pair.key, pair.value);
         }
 
-        const values: Set<number> = new Set<number>(map.values);
-        const valuesList: number[] = Array.from(map.values);
+        const values: number[] = Array.from(map.values);
 
-        expect(valuesList.length).toBe(pairs.length);
+        expect(values.length).toBe(pairs.length);
 
         for (const pair of pairs) {
-            const value: number = pair.value;
-            expect(values.has(value)).toBeTruthy();
+            expect(values).toContain(pair.value);
         }
+    });
+
+    test('set undefined key', (): void => {
+        const map: StringMap<number> = new StringMap<number>();
+
+        const key1: string = 'red';
+        let result: boolean = map.setUndefinedKey(key1, 50);
+        expect(result).toBeTruthy();
+
+        result = map.setUndefinedKey(key1, 50);
+        expect(result).toBeFalsy();
+
+        result = map.setUndefinedKey(key1, 100);
+        expect(result).toBeFalsy();
+
+        const key2: string = 'blue';
+        result = map.setUndefinedKey(key2, 50, 'key already in map');
+        expect(result).toBeTruthy();
+
+        result = map.setUndefinedKey(key2, 50, 'key already in map');
+        expect(result).toBeFalsy();
+
+        result = map.setUndefinedKey(key2, 100, 'key already in map');
+        expect(result).toBeFalsy();
+
+        expect(map.size).toBe(2);
     });
 });

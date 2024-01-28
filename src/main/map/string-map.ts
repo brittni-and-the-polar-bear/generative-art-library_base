@@ -52,7 +52,7 @@ class StringMap<ValueType> {
 
         if (this.map.has(key)) {
             if (errorMessage) {
-                console.error(errorMessage);
+                console.warn(errorMessage);
             }
 
             isSet = false;
