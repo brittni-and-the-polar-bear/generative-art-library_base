@@ -15,6 +15,9 @@
  * See the GNU Affero General Public License for more details.
  */
 
+/**
+ * @public
+ */
 class StringMap<ValueType> {
     private readonly _map: Map<string, ValueType>;
 
@@ -22,25 +25,41 @@ class StringMap<ValueType> {
         this._map = new Map<string, ValueType>();
     }
 
+    public get keys(): IterableIterator<string> {
+        return this.map.keys();
+    }
+
     public get values(): IterableIterator<ValueType> {
         return this.map.values();
     }
 
+    /**
+     * Associate the given `key` with the given `value` in the map
+     * only if the key has not been set in the map.
+     * If an `errorMessage` is provided, it will be logged to the
+     * console if the key already has a value.
+     *
+     * @param key
+     * @param value
+     * @param errorMessage
+     * @returns `true` if the operation is successful, `false` if it is not.
+     * @public
+     */
     public setUndefinedKey(key: string, value: ValueType, errorMessage?: string): boolean {
-        let set: boolean;
+        let isSet: boolean;
 
         if (this.map.has(key)) {
             if (errorMessage) {
                 console.error(errorMessage);
             }
 
-            set = false;
+            isSet = false;
         } else {
             this.map.set(key, value);
-            set = true;
+            isSet = true;
         }
 
-        return set;
+        return isSet;
     }
 
     private get map(): Map<string, ValueType> {

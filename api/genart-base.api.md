@@ -41,6 +41,17 @@ export class SketchContext {
     static get p5(): P5Lib;
 }
 
+// @public (undocumented)
+export class StringMap<ValueType> {
+    constructor();
+    // (undocumented)
+    get keys(): IterableIterator<string>;
+    // (undocumented)
+    setUndefinedKey(key: string, value: ValueType, errorMessage?: string): boolean;
+    // (undocumented)
+    get values(): IterableIterator<ValueType>;
+}
+
 // (No @packageDocumentation comment for this package)
 
 ```
