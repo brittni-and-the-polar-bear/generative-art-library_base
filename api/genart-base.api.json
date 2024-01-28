@@ -853,7 +853,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@batpb/genart-base!StringMap#setUndefinedKey:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Associate the given `key` with the given `value` in the map only if the key has not been set in the map.\n *\n * @param key - \n *\n * @param value - \n *\n * @param errorMessage - optional. message to log if the key already has a value.\n *\n * @returns `true` if the operation is successful, `false` if it is not.\n *\n * @public\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -929,6 +929,36 @@
               "isOptional": false,
               "isAbstract": false,
               "name": "setUndefinedKey"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@batpb/genart-base!StringMap#size:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get size(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "size",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
             },
             {
               "kind": "Property",

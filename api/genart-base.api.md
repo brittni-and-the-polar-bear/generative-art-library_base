@@ -46,8 +46,9 @@ export class StringMap<ValueType> {
     constructor();
     // (undocumented)
     get keys(): IterableIterator<string>;
-    // (undocumented)
     setUndefinedKey(key: string, value: ValueType, errorMessage?: string): boolean;
+    // (undocumented)
+    get size(): number;
     // (undocumented)
     get values(): IterableIterator<ValueType>;
 }
