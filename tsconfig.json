@@ -5,6 +5,7 @@
     "paths": {
       "color": ["./src/main/color"],
       "context": ["./src/main/p5"],
+      "map": ["./src/main/map"],
       "math": ["./src/main/math"]
     },
 
