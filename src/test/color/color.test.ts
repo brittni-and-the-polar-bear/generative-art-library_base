@@ -30,36 +30,38 @@ interface ColorComponents {
 }
 
 describe('color tests', (): void => {
-    const checkP5Color = (expected: ColorComponents, actual: P5Lib.Color):void => {
-        const r: number = Math.floor(p5.red(actual));
-        const g: number = Math.floor(p5.green(actual));
-        const b: number = Math.floor(p5.blue(actual));
-        const a: number = Math.floor(p5.alpha(actual));
-        expect(r).toBe(expected.r);
-        expect(g).toBe(expected.g);
-        expect(b).toBe(expected.b);
-        expect(a).toBe(expected.a);
-    }
+    const p5ColorToColorComponents = (color: P5Lib.Color): ColorComponents => {
+        return {
+            r: Math.floor(p5.red(color)),
+            g: Math.floor(p5.green(color)),
+            b: Math.floor(p5.blue(color)),
+            a: Math.floor(p5.alpha(color))
+        };
+    };
 
-    const checkColor = (expected: ColorComponents, actual: Color):void => {
-        expect(actual.red).toBe(expected.r);
-        expect(actual.green).toBe(expected.g);
-        expect(actual.blue).toBe(expected.b);
-        expect(actual.alpha).toBe(expected.a);
-    }
+    const colorToColorComponents = (color: Color): ColorComponents => {
+        return {
+            r: color.red,
+            g: color.green,
+            b: color.blue,
+            a: color.alpha
+        };
+    };
 
     test('get hsl color', (): void => {
         const h: number = 238;
         const s: number = 65;
         const l: number = 39;
-        const expectedValues: ColorComponents = {r: 34, g: 39, b: 164, a: 255};
+        const expectedComponents: ColorComponents = {r: 34, g: 39, b: 164, a: 255};
         const c: P5Lib.Color = Color.getHSLColor(h, s, l);
+        const cComponents: ColorComponents = p5ColorToColorComponents(c);
 
         p5.colorMode(p5.HSL, 360, 100, 100, 255);
         const hslColor: P5Lib.Color = p5.color(h, s, l);
+        const hslComponents: ColorComponents = p5ColorToColorComponents(hslColor);
 
-        checkP5Color(expectedValues, c);
-        checkP5Color(expectedValues, hslColor);
+        expect(cComponents).toEqual(expectedComponents);
+        expect(hslComponents).toEqual(expectedComponents);
     });
 
     test('get hsla color', (): void => {
@@ -67,14 +69,16 @@ describe('color tests', (): void => {
         const s: number = 82;
         const l: number = 15;
         const a: number = 0.25;
-        const expectedValues: ColorComponents = {r: 6, g: 69, b: 21, a: Math.floor(255 * a)};
+        const expectedComponents: ColorComponents = {r: 6, g: 69, b: 21, a: Math.floor(255 * a)};
         const c: P5Lib.Color = Color.getHSLAColor(h, s, l, a);
+        const cComponents: ColorComponents = p5ColorToColorComponents(c);
 
         p5.colorMode(p5.HSL, 360, 100, 100, 255);
         const hslColor: P5Lib.Color = p5.color(h, s, l, Math.floor(255 * a));
+        const hslComponents: ColorComponents = p5ColorToColorComponents(hslColor);
 
-        checkP5Color(expectedValues, c);
-        checkP5Color(expectedValues, hslColor);
+        expect(cComponents).toEqual(expectedComponents);
+        expect(hslComponents).toEqual(expectedComponents);
     });
 
     test('default color', (): void => {
@@ -83,8 +87,8 @@ describe('color tests', (): void => {
         }
 
         const defaultColor: Color = new Color();
-        checkColor(expected, defaultColor);
-        checkP5Color(expected, defaultColor.color);
+        expect(colorToColorComponents(defaultColor)).toEqual(expected);
+        expect(p5ColorToColorComponents(defaultColor.color)).toEqual(expected);
     });
 
     test('color built with (c) parameter', (): void => {
@@ -95,8 +99,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with (c,a) parameter', (): void => {
@@ -108,8 +112,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with (r,g,b) parameter', (): void => {
@@ -122,8 +126,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with (r,g,b,a) parameter', (): void => {
@@ -137,8 +141,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with (h, s, l) parameter', (): void => {
@@ -151,8 +155,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with (h, s, l, a) parameter', (): void => {
@@ -166,8 +170,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color built with hex color code parameter', (): void => {
@@ -180,8 +184,8 @@ describe('color tests', (): void => {
         }
 
         const color: Color = new Color(c);
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (c) parameter', (): void => {
@@ -193,8 +197,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (c,a) parameter', (): void => {
@@ -207,8 +211,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (r,g,b) color', (): void => {
@@ -222,8 +226,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (r,g,b,a) color', (): void => {
@@ -237,8 +241,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (h, s, l) parameter', (): void => {
@@ -252,8 +256,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with (h, s, l, a) parameter', (): void => {
@@ -268,8 +272,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('color set with hex color code parameter', (): void => {
@@ -283,8 +287,8 @@ describe('color tests', (): void => {
 
         const color: Color = new Color();
         color.color = c;
-        checkColor(expected, color);
-        checkP5Color(expected, color.color);
+        expect(colorToColorComponents(color)).toEqual(expected);
+        expect(p5ColorToColorComponents(color.color)).toEqual(expected);
     });
 
     test('set red to value > 255', (): void => {

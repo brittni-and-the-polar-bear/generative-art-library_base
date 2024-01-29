@@ -15,8 +15,4 @@
  * See the GNU Affero General Public License for more details.
  */
 
-export * from './math';
-export * from './map';
-
-export * from './p5';
-export * from './color';
+export * from './string-map';
