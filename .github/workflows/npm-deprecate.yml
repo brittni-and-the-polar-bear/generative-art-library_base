@@ -8,6 +8,11 @@ jobs:
   deprecate-npm:
     runs-on: ubuntu-latest
     steps:
-      - run: npm deprecate "@batpb/genart-base@0.0.1" "0.0.x is no longer supported"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: https://registry.npmjs.org/
+      - run: npm deprecate @batpb/genart-base@0.0.1 "0.0.x is no longer supported"
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
