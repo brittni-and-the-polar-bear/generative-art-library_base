@@ -1,0 +1,15 @@
+# This workflow will deprecate a version of the @batpb/genart-base package
+
+name: Node.js Package Deprecate
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deprecate-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm deprecate @batpb/genart-base@0.0.1 "0.0.x is no longer supported"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
