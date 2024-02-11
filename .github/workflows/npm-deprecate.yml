@@ -2,9 +2,7 @@
 
 name: Node.js Package Deprecate
 
-on:
-  release:
-    types: [created]
+on: workflow_dispatch
 
 jobs:
   deprecate-npm:
