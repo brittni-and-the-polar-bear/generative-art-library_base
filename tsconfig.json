@@ -10,7 +10,7 @@
     },
 
     /* Modules */
-    "module": "es6",
+    "module": "umd",
     "moduleResolution": "node",
     "rootDirs": [
       "./src"
