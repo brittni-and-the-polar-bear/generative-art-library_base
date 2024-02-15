@@ -16,9 +16,7 @@
  */
 
 import P5Lib from 'p5';
-
-import {Color} from 'color';
-import {SketchContext} from 'context';
+import {Color, SketchContext} from "../../main";
 
 const p5: P5Lib = SketchContext.p5;
 
