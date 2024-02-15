@@ -15,7 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {StringMap} from "map";
+import {StringMap} from "../../main";
 
 interface KeyValuePair {
     readonly key: string,

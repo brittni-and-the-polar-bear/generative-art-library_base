@@ -15,7 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {getSingleDimensionIndex} from 'math';
+import {getSingleDimensionIndex} from "../../main";
 
 describe('math tests', (): void => {
 
@@ -40,5 +40,4 @@ describe('math tests', (): void => {
              expected}): void => {
         expect(getSingleDimensionIndex(row, column, totalRows, totalColumns)).toBe(expected);
     })
-
 });

@@ -23,12 +23,7 @@ const config: JestConfigWithTsJest = {
     coverageReporters: ['text', 'lcov'],
     errorOnDeprecated: true,
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mjs', 'cjs', 'json', 'node'],
-    moduleNameMapper: {
-        '^color$': '<rootDir>/src/main/color',
-        '^context$': '<rootDir>/src/main/p5',
-        '^map$': '<rootDir>/src/main/map',
-        '^math$': '<rootDir>/src/main/math'
-    },
+    moduleNameMapper: {},
     testEnvironment: 'jsdom',
     testRegex: './src/test/.*\\.(test|spec)?\\.(ts|tsx)$',
     transform: {'^.+\\.(ts|tsx)$': 'ts-jest'},
