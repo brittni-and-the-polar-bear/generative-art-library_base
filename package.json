@@ -15,12 +15,9 @@
   "scripts": {
     "build:source": "rm -r ./out; npx tsc",
     "build:types": "rm -r ./api; npx api-extractor run --local --verbose",
-
     "lint": "npx eslint ./src",
-
-    "prepack": "npm run build:source; npm run build:types",
-
-    "test": "rm -r ./out/tests-coverage; npx jest"
+    "test": "rm -r ./out/tests-coverage; npx jest",
+    "prepack": "npm run build:source; npm run build:types"
   },
   "repository": {
     "type": "git",
