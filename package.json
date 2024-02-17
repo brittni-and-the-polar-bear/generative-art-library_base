@@ -1,6 +1,6 @@
 {
   "name": "@batpb/genart-base",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Base classes and methods for the brittni and the polar bear generative art library.",
   "main": "./out/dist/src/main/index.js",
   "types": "./out/dist/src/main/index.d.ts",
@@ -13,9 +13,9 @@
     "./README.md"
   ],
   "scripts": {
+    "lint": "npx eslint ./src",
     "build:source": "rm -r ./out; npx tsc",
     "build:types": "rm -r ./api; npx api-extractor run --local --verbose",
-    "lint": "npx eslint ./src",
     "test": "rm -r ./out/tests-coverage; npx jest",
     "prepack": "npm run build:source; npm run build:types"
   },
