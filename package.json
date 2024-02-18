@@ -8,11 +8,10 @@
     "./out/index.d.ts",
     "./out/index.d.ts.map",
     "./out/index.js",
-    "./out.index.js.map",
+    "./out/index.js.map",
     "./.node-version",
     "./LICENSE",
     "./package.json",
-    "./package-lock.json",
     "./README.md"
   ],
   "scripts": {
