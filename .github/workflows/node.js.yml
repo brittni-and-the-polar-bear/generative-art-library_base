@@ -32,5 +32,4 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build:source --if-present
-      - run: npm run build:types --if-present
       - run: npm test
