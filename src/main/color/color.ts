@@ -21,9 +21,6 @@ import {SketchContext} from '../p5';
 
 const p5: P5Lib = SketchContext.p5;
 
-/**
- * @public
- */
 class Color {
     private _red: number; // 0-255
     private _green: number; // 0-255

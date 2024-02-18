@@ -23,9 +23,6 @@ const noP5: P5Lib = new P5Lib((p: P5Lib): void => {
     }
 });
 
-/**
- * @public
- */
 class SketchContext {
     private static _p5?: P5Lib;
 
