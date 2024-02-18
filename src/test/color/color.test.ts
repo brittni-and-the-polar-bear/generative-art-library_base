@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Brittni Watkins.
+ * Copyright (C) 2023-2024 brittni and the polar bear LLC.
  *
  * This file is a part of brittni and the polar bear's Generative Art Library,
  * which is released under the GNU Affero General Public License, Version 3.0.
@@ -16,6 +16,7 @@
  */
 
 import P5Lib from 'p5';
+
 import {Color, SketchContext} from "../../main";
 
 const p5: P5Lib = SketchContext.p5;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Brittni Watkins.
+ * Copyright (C) 2023-2024 brittni and the polar bear LLC.
  *
  * This file is a part of brittni and the polar bear's Generative Art Library,
  * which is released under the GNU Affero General Public License, Version 3.0.
@@ -16,7 +16,6 @@
  */
 
 /**
- * @public
  * @param row - current row number. rows are zero-indexed; the first row is row 0.
  * @param column - current column number. columns are zero-indexed; the first column is column 0.
  * @param totalRows - total number of rows

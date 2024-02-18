@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Brittni Watkins.
+ * Copyright (C) 2023-2024 brittni and the polar bear LLC.
  *
  * This file is a part of brittni and the polar bear's Generative Art Library,
  * which is released under the GNU Affero General Public License, Version 3.0.
@@ -15,9 +15,6 @@
  * See the GNU Affero General Public License for more details.
  */
 
-/**
- * @public
- */
 class StringMap<ValueType> {
     private readonly _map: Map<string, ValueType>;
 
@@ -41,8 +38,8 @@ class StringMap<ValueType> {
      * Associate the given `key` with the given `value` in the map
      * only if the key has not been set in the map.
      *
-     * @param key -
-     * @param value -
+     * @param key
+     * @param value
      * @param errorMessage - optional. message to log if the key already has a value.
      * @returns `true` if the operation is successful, `false` if it is not.
      * @public

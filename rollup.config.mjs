@@ -15,8 +15,35 @@
  * See the GNU Affero General Public License for more details.
  */
 
-export * from './math';
-export * from './map';
+import eslint from '@rollup/plugin-eslint';
+import terser from '@rollup/plugin-terser';
 
-export * from './p5';
-export * from './color';
+import analyzer from 'rollup-plugin-analyzer';
+import ts from 'rollup-plugin-ts';
+
+export default {
+    input: './src/main/index.ts',
+    output: {
+        dir: './out',
+        format: 'umd',
+        name: 'genart-base',
+        sourcemap: true,
+        preserveModules: false,
+        globals: {
+            p5: 'p5'
+        }
+    },
+    external: ['p5'],
+    plugins: [
+        eslint({
+            include: ['./src/**/*.ts'],
+            throwOnError: true,
+            throwOnWarning: true
+        }),
+        terser(),
+        analyzer({
+            summaryOnly: true
+        }),
+        ts()
+    ]
+};

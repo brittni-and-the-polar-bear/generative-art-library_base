@@ -1,23 +1,23 @@
 {
   "name": "@batpb/genart-base",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Base classes and methods for the brittni and the polar bear generative art library.",
-  "main": "./out/dist/src/main/index.js",
-  "types": "./out/dist/src/main/index.d.ts",
+  "main": "./out/index.js",
+  "types": "./out/index.d.ts",
   "files": [
-    "./out/dist/src/main/**",
+    "./out/index.d.ts",
+    "./out/index.d.ts.map",
+    "./out/index.js",
+    "./out/index.js.map",
     "./.node-version",
     "./LICENSE",
     "./package.json",
-    "./package-lock.json",
     "./README.md"
   ],
   "scripts": {
-    "lint": "npx eslint ./src",
-    "build:source": "rm -r ./out; npx tsc",
-    "build:types": "rm -r ./api; npx api-extractor run --local --verbose",
-    "test": "rm -r ./out/tests-coverage; npx jest",
-    "prepack": "npm run build:source; npm run build:types"
+    "build:source": "rm -r ./out; rollup --config",
+    "test": "rm -r ./out/tests-coverage; jest",
+    "prepack": "npm run build:source"
   },
   "repository": {
     "type": "git",
@@ -53,19 +53,23 @@
   "homepage": "https://github.com/brittni-and-the-polar-bear/generative-art-library_base#readme",
   "dependencies": {
     "@types/p5": "^1.7.6",
-    "p5": "^1.9.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "p5": "^1.9.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.40.1",
+    "@rollup/plugin-eslint": "^9.0.5",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "canvas": "^2.11.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "rollup": "^4.12.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-ts": "^3.4.5",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
   }
 }

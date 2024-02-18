@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Brittni Watkins.
+ * Copyright (C) 2023-2024 brittni and the polar bear LLC.
  *
  * This file is a part of brittni and the polar bear's Generative Art Library,
  * which is released under the GNU Affero General Public License, Version 3.0.
@@ -21,9 +21,6 @@ import {SketchContext} from '../p5';
 
 const p5: P5Lib = SketchContext.p5;
 
-/**
- * @public
- */
 class Color {
     private _red: number; // 0-255
     private _green: number; // 0-255
