@@ -19,30 +19,31 @@ import {randomInt} from '../random';
 import {ColorSelector} from './color-selector';
 
 class ColorSelectorManager {
-    private readonly _colorSelectors: ColorSelector[] = [];
+    private readonly _colorSelectors: Set<ColorSelector> = new Set<ColorSelector>();
 
     public getRandomColorSelector(): ColorSelector | undefined {
         let selector: ColorSelector | undefined = undefined;
+        const selectors: ColorSelector[] = Array.from(this.colorSelectors);
 
-        if (this.colorSelectors.length < 1) {
-            const index: number = randomInt(0, this.colorSelectors.length);
-            selector = this.colorSelectors[index];
+        if (selectors.length < 1) {
+            const index: number = randomInt(0, selectors.length);
+            selector = selectors[index];
         }
 
         return selector;
     }
 
     public addColorSelector(selector: ColorSelector): void {
-        this.colorSelectors.push(selector);
+        this.colorSelectors.add(selector);
     }
 
     public addColorSelectors(selectors: Iterable<ColorSelector>): void {
         for (const selector of selectors) {
-            this.colorSelectors.push(selector);
+            this.colorSelectors.add(selector);
         }
     }
 
-    private get colorSelectors(): ColorSelector[] {
+    private get colorSelectors(): Set<ColorSelector> {
         return this._colorSelectors;
     }
 }
