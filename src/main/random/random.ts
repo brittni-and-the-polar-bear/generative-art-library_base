@@ -15,6 +15,8 @@
  * See the GNU Affero General Public License for more details.
  */
 
+import {WeightedElement} from './weighted-element';
+
 /**
  * @param min
  * @param max
@@ -66,7 +68,12 @@ function randomBoolean(chanceOfTrue?: number): boolean {
     return value;
 }
 
-function randomListElement<Type>(list: Type[]): Type | undefined {
+// TODO - complete randomElement documentation
+/**
+ *
+ * @param list
+ */
+function randomElement<Type>(list: Type[]): Type | undefined {
     let element: Type | undefined = undefined;
 
     if (list.length > 0) {
@@ -81,4 +88,39 @@ function randomListElement<Type>(list: Type[]): Type | undefined {
     return element;
 }
 
-export {randomBoolean, randomFloat, randomInt, randomListElement};
+// TODO - complete randomElement documentation
+/**
+ *
+ * @param list
+ */
+function randomWeightedElement<Type>(list: WeightedElement<Type>[]): Type | undefined {
+    let element: Type | undefined = undefined;
+
+    if (list.length > 0) {
+        let weightSum: number = list.reduce((total: number, element: WeightedElement<Type>): number => {
+            return total + element.weight;
+        }, 0);
+
+        if (weightSum >= 1) {
+            if (weightSum > 1) {
+                console.warn('Sum of element weights is greater than 1.0. This could cause some elements to never be selected from the list.');
+            }
+
+            let r: number = randomFloat(0, 1);
+            let sum: number = 0;
+
+            for (let e of list) {
+                if (r < sum + e.weight) {
+                    element = e.value;
+                    break;
+                } else {
+                    sum += e.weight;
+                }
+            }
+        }
+    }
+
+    return element;
+}
+
+export {randomBoolean, randomFloat, randomInt, randomElement, randomWeightedElement};

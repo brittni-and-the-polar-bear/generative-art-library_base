@@ -15,7 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {randomBoolean, randomFloat, randomInt, randomListElement} from "../../main";
+import {randomBoolean, randomFloat, randomInt, randomElement, WeightedElement, randomWeightedElement} from "../../main";
 
 describe('random tests', (): void => {
     test.each([
@@ -111,18 +111,50 @@ describe('random tests', (): void => {
     test('test randomListElement', (): void => {
         // numbers
         let nums: number[] = [10, 68, 24.5, -3];
-        let numChoice: number | undefined = randomListElement(nums);
+        let numChoice: number | undefined = randomElement(nums);
         expect(nums).toContain(numChoice);
 
-        numChoice = randomListElement([]);
+        numChoice = randomElement([]);
         expect(numChoice).toBeUndefined();
 
         // strings
         let strings: string[] = ['hello', 'goodbye', 'jack', 'sally', 'george'];
-        let stringChoice: string | undefined = randomListElement(strings);
+        let stringChoice: string | undefined = randomElement(strings);
         expect(strings).toContain(stringChoice);
 
-        stringChoice = randomListElement([]);
+        stringChoice = randomElement([]);
         expect(stringChoice).toBeUndefined();
+    });
+
+    test('test randomWeightedElement', (): void => {
+        let weightedStrings: WeightedElement<string>[] = [
+            {value: 'hello', weight: 0.4},
+            {value: 'goodbye', weight: 0.3},
+            {value: 'howdy!', weight: 0.3}
+        ];
+
+        let expectedValues: string[] = weightedStrings.map((e: WeightedElement<string>) => e.value);
+        let actualValues: Set<string> = new Set<string>();
+
+        for (let i: number = 0; i < 1_000; i++) {
+            let result: string | undefined = randomWeightedElement(weightedStrings);
+
+            if (result) {
+                actualValues.add(result);
+            }
+
+            if (actualValues.size === expectedValues.length) {
+                break;
+            }
+        }
+
+        for (let s of actualValues) {
+            expect(expectedValues).toContain(s);
+        }
+
+        // TODO - make a test for empty list
+        // TODO - make a test for list with weight sum < 1
+        // TODO - make a test for list with weight sum > 1
+        // TODO - make a full set of tests with number type
     });
 });
