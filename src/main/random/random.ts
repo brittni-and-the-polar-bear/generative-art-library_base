@@ -94,8 +94,8 @@ class Random {
         let element: Type | undefined = undefined;
 
         if (list.length > 0) {
-            let size: number = list.length;
-            let index: number = Random.randomInt(0, size);
+            const size: number = list.length;
+            const index: number = Random.randomInt(0, size);
 
             if (index < size) {
                 element = list[index];
@@ -117,8 +117,8 @@ class Random {
         let element: Type | undefined = undefined;
 
         if (list.length > 0) {
-            let weightSum: number = list.reduce((total: number, element: WeightedElement<Type>): number => {
-                return total + element.weight;
+            const weightSum: number = list.reduce((total: number, e: WeightedElement<Type>): number => {
+                return total + e.weight;
             }, 0);
 
             if (weightSum >= 1) {
@@ -126,10 +126,10 @@ class Random {
                     console.warn('Sum of element weights is greater than 1.0. This could cause some elements to never be selected from the list.');
                 }
 
-                let r: number = Random.randomFloat(0, 1);
+                const r: number = Random.randomFloat(0, 1);
                 let sum: number = 0;
 
-                for (let e of list) {
+                for (const e of list) {
                     if (r < sum + e.weight) {
                         element = e.value;
                         break;
