@@ -66,4 +66,19 @@ function randomBoolean(chanceOfTrue?: number): boolean {
     return value;
 }
 
-export {randomBoolean, randomFloat, randomInt};
+function randomListElement<Type>(list: Type[]): Type | undefined {
+    let element: Type | undefined = undefined;
+
+    if (list.length > 0) {
+        let size: number = list.length;
+        let index: number = randomInt(0, size);
+
+        if (index < size) {
+            element = list[index];
+        }
+    }
+
+    return element;
+}
+
+export {randomBoolean, randomFloat, randomInt, randomListElement};

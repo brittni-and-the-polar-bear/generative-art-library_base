@@ -15,7 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {randomBoolean, randomFloat, randomInt} from "../../main";
+import {randomBoolean, randomFloat, randomInt, randomListElement} from "../../main";
 
 describe('random tests', (): void => {
     test.each([
@@ -106,5 +106,23 @@ describe('random tests', (): void => {
 
         expect(trueResult).toBeTruthy();
         expect(falseResult).toBeTruthy();
+    });
+
+    test('test randomListElement', (): void => {
+        // numbers
+        let nums: number[] = [10, 68, 24.5, -3];
+        let numChoice: number | undefined = randomListElement(nums);
+        expect(nums).toContain(numChoice);
+
+        numChoice = randomListElement([]);
+        expect(numChoice).toBeUndefined();
+
+        // strings
+        let strings: string[] = ['hello', 'goodbye', 'jack', 'sally', 'george'];
+        let stringChoice: string | undefined = randomListElement(strings);
+        expect(strings).toContain(stringChoice);
+
+        stringChoice = randomListElement([]);
+        expect(stringChoice).toBeUndefined();
     });
 });
