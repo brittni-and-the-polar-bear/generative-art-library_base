@@ -18,9 +18,9 @@
 import {WeightedElement} from './weighted-element';
 
 /**
- * @param min
- * @param max
- * @returns a random floating point value greater than or equal to min and less than max.
+ * @param min {number} - the minimum number that can be returned from this function (inclusive).
+ * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
+ * @returns {number} - a random floating point value greater than or equal to min and less than max.
  */
 function randomFloat(min: number, max: number): number {
     if (min > max) {
@@ -33,18 +33,18 @@ function randomFloat(min: number, max: number): number {
 }
 
 /**
- * @param min
- * @param max
- * @returns a random integer value greater than or equal to min and less than max.
+ * @param min {number} - the minimum number that can be returned from this function (inclusive).
+ * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
+ * @returns {number} - a random integer value greater than or equal to min and less than max.
  */
 function randomInt(min: number, max: number): number {
     return Math.floor(randomFloat(min, max));
 }
 
 /**
- * @param chanceOfTrue - a floating point number between 0 and 1.
- * If provided, it represents the percent chance that this method will return true;
- * @returns a random boolean value.
+ * @param chanceOfTrue {number} - a floating point number between 0 and 1.
+ * If provided, it represents the percent chance that this method will return true.
+ * @returns {boolean} - a random boolean value.
  */
 function randomBoolean(chanceOfTrue?: number): boolean {
     let value: boolean = true;
@@ -68,10 +68,11 @@ function randomBoolean(chanceOfTrue?: number): boolean {
     return value;
 }
 
-// TODO - complete randomElement documentation
 /**
- *
- * @param list
+ * @param list {<Type>} - the list of elements to be selected from.
+ * @returns {<Type>} - a random element from the given list.
+ * If an empty list is provided, the function will return undefined.
+ * This method assumes an equal distribution for all elements of the list.
  */
 function randomElement<Type>(list: Type[]): Type | undefined {
     let element: Type | undefined = undefined;
@@ -88,10 +89,13 @@ function randomElement<Type>(list: Type[]): Type | undefined {
     return element;
 }
 
-// TODO - complete randomElement documentation
 /**
+ * @param list {<Type>} - the list of elements to be selected from.
+ * <b>IMPORTANT:</b> the sum of weights of the objects in this list should be equal to 1.0.
  *
- * @param list
+ * @returns {<Type>} - a random element from the given list.
+ * The distribution of the choices will be determined by the weights of each
+ * element in the list.
  */
 function randomWeightedElement<Type>(list: WeightedElement<Type>[]): Type | undefined {
     let element: Type | undefined = undefined;
