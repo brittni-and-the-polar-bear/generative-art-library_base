@@ -18,113 +18,130 @@
 import {WeightedElement} from './weighted-element';
 
 /**
- * @param min {number} - the minimum number that can be returned from this function (inclusive).
- * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
- * @returns {number} - a random floating point value greater than or equal to min and less than max.
+ * A collection of static methods for retrieving random values.
+ * @author azurepolarbear
+ * @author brittni watkins
  */
-function randomFloat(min: number, max: number): number {
-    if (min > max) {
-        const temp: number = max;
-        max = min;
-        min = temp;
+class Random {
+    private static _randomMethod: () => number = Math.random;
+
+    /**
+     * @param method {() => number} - the method to be used as the base random method of the class.
+     * All methods in this class get their randomness from this function.
+     */
+    public static set randomMethod(method: () => number) {
+        Random._randomMethod = method;
     }
 
-    return (Math.random() * (max - min)) + min;
-}
-
-/**
- * @param min {number} - the minimum number that can be returned from this function (inclusive).
- * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
- * @returns {number} - a random integer value greater than or equal to min and less than max.
- */
-function randomInt(min: number, max: number): number {
-    return Math.floor(randomFloat(min, max));
-}
-
-/**
- * @param chanceOfTrue {number} - a floating point number between 0 and 1.
- * If provided, it represents the percent chance that this method will return true.
- * @returns {boolean} - a random boolean value.
- */
-function randomBoolean(chanceOfTrue?: number): boolean {
-    let value: boolean = true;
-
-    if (chanceOfTrue
-        && chanceOfTrue > 0
-        && chanceOfTrue < 1) {
-        const r: number = randomFloat(0, 1);
-
-        if (r > chanceOfTrue) {
-            value = false;
+    /**
+     * @param min {number} - the minimum number that can be returned from this function (inclusive).
+     * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
+     * @returns {number} - a random floating point value greater than or equal to min and less than max.
+     */
+    public static randomFloat(min: number, max: number): number {
+        if (min > max) {
+            const temp: number = max;
+            max = min;
+            min = temp;
         }
-    } else {
-        const r: number = randomInt(0, 2);
 
-        if (r % 2 === 0) {
-            value = false;
-        }
+        return (Random._randomMethod() * (max - min)) + min;
     }
 
-    return value;
-}
-
-/**
- * @param list {<Type>} - the list of elements to be selected from.
- * @returns {<Type>} - a random element from the given list.
- * If an empty list is provided, the function will return undefined.
- * This method assumes an equal distribution for all elements of the list.
- */
-function randomElement<Type>(list: Type[]): Type | undefined {
-    let element: Type | undefined = undefined;
-
-    if (list.length > 0) {
-        let size: number = list.length;
-        let index: number = randomInt(0, size);
-
-        if (index < size) {
-            element = list[index];
-        }
+    /**
+     * @param min {number} - the minimum number that can be returned from this function (inclusive).
+     * @param max {number} - the maximum number that can be returned from the function (non-inclusive).
+     * @returns {number} - a random integer value greater than or equal to min and less than max.
+     */
+    public static randomInt(min: number, max: number): number {
+        return Math.floor(Random.randomFloat(min, max));
     }
 
-    return element;
-}
+    /**
+     * @param chanceOfTrue {number} - a floating point number between 0 and 1.
+     * If provided, it represents the percent chance that this method will return true.
+     * @returns {boolean} - a random boolean value.
+     */
+    public static randomBoolean(chanceOfTrue?: number): boolean {
+        let value: boolean = true;
 
-/**
- * @param list {<Type>} - the list of elements to be selected from.
- * <b>IMPORTANT:</b> the sum of weights of the objects in this list should be equal to 1.0.
- *
- * @returns {<Type>} - a random element from the given list.
- * The distribution of the choices will be determined by the weights of each
- * element in the list.
- */
-function randomWeightedElement<Type>(list: WeightedElement<Type>[]): Type | undefined {
-    let element: Type | undefined = undefined;
+        if (chanceOfTrue
+            && chanceOfTrue > 0
+            && chanceOfTrue < 1) {
+            const r: number = Random.randomFloat(0, 1);
 
-    if (list.length > 0) {
-        let weightSum: number = list.reduce((total: number, element: WeightedElement<Type>): number => {
-            return total + element.weight;
-        }, 0);
-
-        if (weightSum >= 1) {
-            if (weightSum > 1) {
-                console.warn('Sum of element weights is greater than 1.0. This could cause some elements to never be selected from the list.');
+            if (r > chanceOfTrue) {
+                value = false;
             }
+        } else {
+            const r: number = Random.randomInt(0, 2);
 
-            let r: number = randomFloat(0, 1);
-            let sum: number = 0;
+            if (r % 2 === 0) {
+                value = false;
+            }
+        }
 
-            for (let e of list) {
-                if (r < sum + e.weight) {
-                    element = e.value;
-                    break;
-                } else {
-                    sum += e.weight;
+        return value;
+    }
+
+    /**
+     * @param list {<Type>} - the list of elements to be selected from.
+     * @returns {<Type>} - a random element from the given list.
+     * If an empty list is provided, the function will return undefined.
+     * This method assumes an equal distribution for all elements of the list.
+     */
+    public static randomElement<Type>(list: Type[]): Type | undefined {
+        let element: Type | undefined = undefined;
+
+        if (list.length > 0) {
+            let size: number = list.length;
+            let index: number = Random.randomInt(0, size);
+
+            if (index < size) {
+                element = list[index];
+            }
+        }
+
+        return element;
+    }
+
+    /**
+     * @param list {<Type>} - the list of elements to be selected from.
+     * <b>IMPORTANT:</b> the sum of weights of the objects in this list should be equal to 1.0.
+     *
+     * @returns {<Type>} - a random element from the given list.
+     * The distribution of the choices will be determined by the weights of each
+     * element in the list.
+     */
+    public static randomWeightedElement<Type>(list: WeightedElement<Type>[]): Type | undefined {
+        let element: Type | undefined = undefined;
+
+        if (list.length > 0) {
+            let weightSum: number = list.reduce((total: number, element: WeightedElement<Type>): number => {
+                return total + element.weight;
+            }, 0);
+
+            if (weightSum >= 1) {
+                if (weightSum > 1) {
+                    console.warn('Sum of element weights is greater than 1.0. This could cause some elements to never be selected from the list.');
+                }
+
+                let r: number = Random.randomFloat(0, 1);
+                let sum: number = 0;
+
+                for (let e of list) {
+                    if (r < sum + e.weight) {
+                        element = e.value;
+                        break;
+                    } else {
+                        sum += e.weight;
+                    }
                 }
             }
         }
-    }
 
-    return element;
+        return element;
+    }
 }
 
-export {randomBoolean, randomFloat, randomInt, randomElement, randomWeightedElement};
+export {Random};
