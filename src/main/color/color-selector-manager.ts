@@ -15,22 +15,15 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {randomInt} from '../random';
+import {Random} from '../random';
 import {ColorSelector} from './color-selector';
 
 class ColorSelectorManager {
     private readonly _colorSelectors: Set<ColorSelector> = new Set<ColorSelector>();
 
     public getRandomColorSelector(): ColorSelector | undefined {
-        let selector: ColorSelector | undefined = undefined;
         const selectors: ColorSelector[] = Array.from(this.colorSelectors);
-
-        if (selectors.length < 1) {
-            const index: number = randomInt(0, selectors.length);
-            selector = selectors[index];
-        }
-
-        return selector;
+        return Random.randomElement(selectors);
     }
 
     public addColorSelector(selector: ColorSelector): void {
