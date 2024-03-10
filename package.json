@@ -17,6 +17,7 @@
   "scripts": {
     "build:source": "rm -r ./out; rollup --config",
     "test": "rm -r ./out/tests-coverage; jest",
+    "lint": "eslint ./src",
     "prepack": "npm run build:source"
   },
   "repository": {

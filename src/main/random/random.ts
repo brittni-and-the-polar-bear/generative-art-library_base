@@ -117,9 +117,11 @@ class Random {
         let element: Type | undefined = undefined;
 
         if (list.length > 0) {
-            const weightSum: number = list.reduce((total: number, e: WeightedElement<Type>): number => {
+            let weightSum: number = list.reduce((total: number, e: WeightedElement<Type>): number => {
                 return total + e.weight;
             }, 0);
+
+            weightSum = parseFloat(weightSum.toFixed(4));
 
             if (weightSum >= 1) {
                 if (weightSum > 1) {
@@ -137,6 +139,8 @@ class Random {
                         sum += e.weight;
                     }
                 }
+            } else {
+                console.warn('Sum of element weights is less than 1.0. Random element cannot be retrieved.');
             }
         }
 

@@ -15,7 +15,7 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {randomBoolean, randomFloat, randomInt, randomElement, WeightedElement, randomWeightedElement} from "../../main";
+import {Random, WeightedElement} from "../../main";
 
 describe('random tests', (): void => {
     test.each([
@@ -33,12 +33,12 @@ describe('random tests', (): void => {
     ])('$# random float test: randomFloat($min, $max)',
         ({min, max, expectMin, expectMax}): void => {
             for (let i: number = 0; i < 10; i++) {
-                const r: number = randomFloat(min, max);
+                const r: number = Random.randomFloat(min, max);
                 expect(r).toBeGreaterThanOrEqual(expectMin);
                 expect(r).toBeLessThan(expectMax);
             }
         }
-    )
+    );
 
     test.each([
         {min: 0, max: 250, expectMin: 0, expectMax: 250},
@@ -54,20 +54,20 @@ describe('random tests', (): void => {
     ])('$# random int test: randomInt($min, $max)',
         ({min, max, expectMin, expectMax}): void => {
             for (let i: number = 0; i < 10; i++) {
-                const r: number = randomInt(min, max);
+                const r: number = Random.randomInt(min, max);
                 expect(r).toBeGreaterThanOrEqual(expectMin);
                 expect(r).toBeLessThan(expectMax);
                 expect(Math.floor(r)).toBe(r);
             }
         }
-    )
+    );
 
-    test('test random boolean', (): void => {
+    test('test randomBoolean without weight', (): void => {
         let trueResult: boolean = false;
         let falseResult: boolean = false;
 
         for (let i: number = 0; i < 1_000; i++) {
-            const b: boolean = randomBoolean();
+            const b: boolean = Random.randomBoolean();
 
             if (!trueResult && b) {
                 trueResult = true;
@@ -84,12 +84,14 @@ describe('random tests', (): void => {
 
         expect(trueResult).toBeTruthy();
         expect(falseResult).toBeTruthy();
+    });
 
-        trueResult = false;
-        falseResult = false;
+    test('test randomBoolean with weight', (): void => {
+        let trueResult: boolean = false;
+        let falseResult: boolean = false;
 
         for (let i: number = 0; i < 1_000; i++) {
-            const b: boolean = randomBoolean(0.6);
+            const b: boolean = Random.randomBoolean(0.6);
 
             if (!trueResult && b) {
                 trueResult = true;
@@ -108,36 +110,44 @@ describe('random tests', (): void => {
         expect(falseResult).toBeTruthy();
     });
 
-    test('test randomListElement', (): void => {
-        // numbers
-        let nums: number[] = [10, 68, 24.5, -3];
-        let numChoice: number | undefined = randomElement(nums);
-        expect(nums).toContain(numChoice);
-
-        numChoice = randomElement([]);
-        expect(numChoice).toBeUndefined();
-
-        // strings
-        let strings: string[] = ['hello', 'goodbye', 'jack', 'sally', 'george'];
-        let stringChoice: string | undefined = randomElement(strings);
-        expect(strings).toContain(stringChoice);
-
-        stringChoice = randomElement([]);
-        expect(stringChoice).toBeUndefined();
+    test('test randomListElement with number type', (): void => {
+        const list: number[] = [10, 68, 24.5, -3];
+        const choice: number | undefined = Random.randomElement(list);
+        expect(list).toContain(choice);
     });
 
-    test('test randomWeightedElement', (): void => {
-        let weightedStrings: WeightedElement<string>[] = [
-            {value: 'hello', weight: 0.4},
-            {value: 'goodbye', weight: 0.3},
-            {value: 'howdy!', weight: 0.3}
+    test('test randomListElement with string type', (): void => {
+        const list: string[] = ['hello', 'goodbye', 'jack', 'sally', 'george'];
+        const choice: string | undefined = Random.randomElement(list);
+        expect(list).toContain(choice);
+    });
+
+    test('test randomListElement with empty number list', (): void => {
+        const empty: number[] = [];
+        const choice: number | undefined = Random.randomElement(empty);
+        expect(choice).toBeUndefined();
+    });
+
+    test('test randomListElement with empty string list', (): void => {
+        const empty: string[] = [];
+        const choice: string | undefined = Random.randomElement(empty);
+        expect(choice).toBeUndefined();
+    });
+
+    test('test randomWeightedElement with number type', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedNums: WeightedElement<number>[] = [
+            {value: 48, weight: 0.2},
+            {value: 23.96, weight: 0.4},
+            {value: 10.445, weight: 0.3},
+            {value: 11, weight: 0.1}
         ];
 
-        let expectedValues: string[] = weightedStrings.map((e: WeightedElement<string>) => e.value);
-        let actualValues: Set<string> = new Set<string>();
+        const expectedValues: number[] = weightedNums.map((e: WeightedElement<number>) => e.value);
+        const actualValues: Set<number> = new Set<number>();
 
         for (let i: number = 0; i < 1_000; i++) {
-            let result: string | undefined = randomWeightedElement(weightedStrings);
+            const result: number | undefined = Random.randomWeightedElement(weightedNums);
 
             if (result) {
                 actualValues.add(result);
@@ -148,13 +158,151 @@ describe('random tests', (): void => {
             }
         }
 
-        for (let s of actualValues) {
+        for (const s of actualValues) {
             expect(expectedValues).toContain(s);
         }
 
-        // TODO - make a test for empty list
-        // TODO - make a test for list with weight sum < 1
-        // TODO - make a test for list with weight sum > 1
-        // TODO - make a full set of tests with number type
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeightedElement with strings', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedStrings: WeightedElement<string>[] = [
+            {value: 'hello', weight: 0.4},
+            {value: 'goodbye', weight: 0.3},
+            {value: 'howdy!', weight: 0.3}
+        ];
+
+        const expectedValues: string[] = weightedStrings.map((e: WeightedElement<string>) => e.value);
+        const actualValues: Set<string> = new Set<string>();
+
+        for (let i: number = 0; i < 1_000; i++) {
+            const result: string | undefined = Random.randomWeightedElement(weightedStrings);
+
+            if (result) {
+                actualValues.add(result);
+            }
+
+            if (actualValues.size === expectedValues.length) {
+                break;
+            }
+        }
+
+        for (const s of actualValues) {
+            expect(expectedValues).toContain(s);
+        }
+
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeightedElement with empty number list', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const numbers: WeightedElement<number>[] = [];
+        const result: number | undefined = Random.randomWeightedElement(numbers);
+        expect(result).toBeUndefined();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeightedElement with empty string list', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const strings: WeightedElement<string>[] = [];
+        const result: string | undefined = Random.randomWeightedElement(strings);
+        expect(result).toBeUndefined();
+        expect(logSpy).not.toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeighedElement with numbers and weight sum < 1', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedNums: WeightedElement<number>[] = [
+            {value: 48, weight: 0.2},
+            {value: 23.96, weight: 0.4},
+            {value: 10.445, weight: 0.3}
+        ];
+
+        const result: number | undefined = Random.randomWeightedElement(weightedNums);
+        expect(result).toBeUndefined();
+        expect(logSpy).toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeighedElement with strings and weight sum < 1', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedStrings: WeightedElement<string>[] = [
+            {value: 'hello', weight: 0.4},
+            {value: 'goodbye', weight: 0.3},
+            {value: 'howdy!', weight: 0.29}
+        ];
+
+        const result: string | undefined = Random.randomWeightedElement(weightedStrings);
+        expect(result).toBeUndefined();
+        expect(logSpy).toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeighedElement with numbers and weight sum > 1', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedNums: WeightedElement<number>[] = [
+            {value: 48, weight: 0.2},
+            {value: 23.96, weight: 0.4},
+            {value: 10.445, weight: 0.3},
+            {value: 11, weight: 0.2}
+        ];
+
+        const expectedValues: number[] = weightedNums.map((e: WeightedElement<number>) => e.value);
+        const actualValues: Set<number> = new Set<number>();
+
+        for (let i: number = 0; i < 1_000; i++) {
+            const result: number | undefined = Random.randomWeightedElement(weightedNums);
+
+            if (result) {
+                actualValues.add(result);
+            }
+
+            if (actualValues.size === expectedValues.length) {
+                break;
+            }
+        }
+
+        for (const s of actualValues) {
+            expect(expectedValues).toContain(s);
+        }
+
+        expect(logSpy).toHaveBeenCalled();
+        logSpy.mockRestore();
+    });
+
+    test('test randomWeighedElement with strings and weight sum > 1', (): void => {
+        const logSpy = jest.spyOn(global.console, 'warn');
+        const weightedStrings: WeightedElement<string>[] = [
+            {value: 'hello', weight: 0.4},
+            {value: 'goodbye', weight: 0.3},
+            {value: 'howdy!', weight: 0.4}
+        ];
+
+        const expectedValues: string[] = weightedStrings.map((e: WeightedElement<string>) => e.value);
+        const actualValues: Set<string> = new Set<string>();
+
+        for (let i: number = 0; i < 1_000; i++) {
+            const result: string | undefined = Random.randomWeightedElement(weightedStrings);
+
+            if (result) {
+                actualValues.add(result);
+            }
+
+            if (actualValues.size === expectedValues.length) {
+                break;
+            }
+        }
+
+        for (const s of actualValues) {
+            expect(expectedValues).toContain(s);
+        }
+
+        expect(logSpy).toHaveBeenCalled();
+        logSpy.mockRestore();
     });
 });
