@@ -15,8 +15,26 @@
  * See the GNU Affero General Public License for more details.
  */
 
-export * from './color';
-export * from './math';
-export * from './map';
-export * from './p5';
-export * from './random';
+import {Random} from '../random';
+import {ColorSelector} from './color-selector';
+
+class ColorSelectorManager {
+    private readonly _colorSelectors: Set<ColorSelector> = new Set<ColorSelector>();
+
+    public getRandomColorSelector(): ColorSelector | undefined {
+        const selectors: ColorSelector[] = Array.from(this._colorSelectors);
+        return Random.randomElement(selectors);
+    }
+
+    public addColorSelector(selector: ColorSelector): void {
+        this._colorSelectors.add(selector);
+    }
+
+    public addColorSelectors(selectors: Iterable<ColorSelector>): void {
+        for (const selector of selectors) {
+            this._colorSelectors.add(selector);
+        }
+    }
+}
+
+export {ColorSelectorManager};
