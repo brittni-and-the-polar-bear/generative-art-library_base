@@ -23,15 +23,15 @@ class StringMap<ValueType> {
     }
 
     public get keys(): IterableIterator<string> {
-        return this.map.keys();
+        return this._map.keys();
     }
 
     public get values(): IterableIterator<ValueType> {
-        return this.map.values();
+        return this._map.values();
     }
 
     public get size(): number {
-        return this.map.size;
+        return this._map.size;
     }
 
     /**
@@ -47,22 +47,18 @@ class StringMap<ValueType> {
     public setUndefinedKey(key: string, value: ValueType, errorMessage?: string): boolean {
         let isSet: boolean;
 
-        if (this.map.has(key)) {
+        if (this._map.has(key)) {
             if (errorMessage) {
                 console.warn(errorMessage);
             }
 
             isSet = false;
         } else {
-            this.map.set(key, value);
+            this._map.set(key, value);
             isSet = true;
         }
 
         return isSet;
-    }
-
-    private get map(): Map<string, ValueType> {
-        return this._map;
     }
 }
 

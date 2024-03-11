@@ -22,22 +22,18 @@ class ColorSelectorManager {
     private readonly _colorSelectors: Set<ColorSelector> = new Set<ColorSelector>();
 
     public getRandomColorSelector(): ColorSelector | undefined {
-        const selectors: ColorSelector[] = Array.from(this.colorSelectors);
+        const selectors: ColorSelector[] = Array.from(this._colorSelectors);
         return Random.randomElement(selectors);
     }
 
     public addColorSelector(selector: ColorSelector): void {
-        this.colorSelectors.add(selector);
+        this._colorSelectors.add(selector);
     }
 
     public addColorSelectors(selectors: Iterable<ColorSelector>): void {
         for (const selector of selectors) {
-            this.colorSelectors.add(selector);
+            this._colorSelectors.add(selector);
         }
-    }
-
-    private get colorSelectors(): Set<ColorSelector> {
-        return this._colorSelectors;
     }
 }
 

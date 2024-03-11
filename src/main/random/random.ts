@@ -19,8 +19,6 @@ import {WeightedElement} from './weighted-element';
 
 /**
  * A collection of static methods for retrieving random values.
- * @author azurepolarbear
- * @author brittni watkins
  */
 class Random {
     private static _randomMethod: () => number = Math.random;

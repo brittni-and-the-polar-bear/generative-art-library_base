@@ -19,6 +19,9 @@ import {Color} from "./color";
 
 interface ColorSelector {
     getColor(): Color;
+    get name(): string;
+    get colors(): string[];
+    get isPalette(): boolean;
 }
 
 export {type ColorSelector};
