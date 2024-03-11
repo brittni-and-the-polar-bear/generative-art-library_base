@@ -15,13 +15,4 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {Color} from "./color";
-
-interface ColorSelector {
-    getColor(): Color;
-    get name(): string;
-    get colorNames(): string[];
-    get hasPalette(): boolean;
-}
-
-export {type ColorSelector};
+test.todo('Implement test for ColorSelectorManager with stubbed out ColorSelector classes/objects');
