@@ -16,7 +16,6 @@
  */
 
 import eslint from '@rollup/plugin-eslint';
-import terser from '@rollup/plugin-terser';
 
 import analyzer from 'rollup-plugin-analyzer';
 import ts from 'rollup-plugin-ts';
@@ -40,7 +39,6 @@ export default {
             throwOnError: true,
             throwOnWarning: true
         }),
-        terser(),
         analyzer({
             summaryOnly: true
         }),
