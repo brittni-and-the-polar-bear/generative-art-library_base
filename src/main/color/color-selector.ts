@@ -16,12 +16,45 @@
  */
 
 import {Color} from "./color";
+import {Random} from "../random";
 
-interface ColorSelector {
-    getColor(): Color;
-    get name(): string;
-    get colorNames(): string[];
-    get hasPalette(): boolean;
+abstract class ColorSelector {
+    private readonly _colorChoices: Color[] = [];
+    private readonly _randomOrder: boolean;
+    private _currentIndex: number = 0;
+
+    protected constructor(randomOrder?: boolean) {
+        this._randomOrder = randomOrder ?? Random.randomBoolean();
+    }
+
+    public abstract getColor(): Color;
+
+    public abstract get name(): string;
+
+    public abstract get colorNames(): string[];
+
+    public abstract get hasPalette(): boolean;
+
+    public selectColorFromChoices(): Color {
+        let col: Color;
+
+        if (this._randomOrder) {
+            col =  Random.randomElement(this._colorChoices) ?? (new Color());
+        } else {
+            col = this._colorChoices[this._currentIndex];
+            this.incrementCurrentIndex();
+        }
+
+        return col;
+    }
+
+    protected addColorChoice(color: Color): void {
+        this._colorChoices.push(color);
+    }
+
+    private incrementCurrentIndex(): void {
+        this._currentIndex = (this._currentIndex + 1) % this._colorChoices.length;
+    }
 }
 
-export {type ColorSelector};
+export {ColorSelector};
