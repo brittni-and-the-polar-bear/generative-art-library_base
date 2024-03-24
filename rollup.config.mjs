@@ -16,7 +16,6 @@
  */
 
 import eslint from '@rollup/plugin-eslint';
-
 import analyzer from 'rollup-plugin-analyzer';
 import ts from 'rollup-plugin-ts';
 
