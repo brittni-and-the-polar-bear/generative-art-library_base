@@ -1,17 +1,18 @@
-# Generative Art Library: Base
+# [@batpb/genart-base](https://www.npmjs.com/package/@batpb/genart-base) - generative art library base package
 
 Copyright (C) 2023-2024 brittni and the polar bear LLC.
 
-Base classes and methods for the brittni and the polar bear [generative art library](https://github.com/brittni-and-the-polar-bear/generative-art-library).
+Base classes and methods for the brittni and the polar bear 
+[generative art library](https://github.com/brittni-and-the-polar-bear/generative-art-library).
 
 ## Summary
 
 [![CodeQL](https://github.com/brittni-and-the-polar-bear/generative-art-library_base/actions/workflows/codeql.yml/badge.svg)](https://github.com/brittni-and-the-polar-bear/generative-art-library_base/actions/workflows/codeql.yml)
 [![Node.js Build and Test](https://github.com/brittni-and-the-polar-bear/generative-art-library_base/actions/workflows/node.js.yml/badge.svg)](https://github.com/brittni-and-the-polar-bear/generative-art-library_base/actions/workflows/node.js.yml)
 
-![NPM Version](https://img.shields.io/npm/v/%40batpb%2Fgenart-base)
+[![NPM Version](https://img.shields.io/npm/v/%40batpb%2Fgenart-base)
 ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/brittni-and-the-polar-bear/generative-art-library_base)
-![GitHub License](https://img.shields.io/github/license/brittni-and-the-polar-bear/generative-art-library_base)
+![GitHub License](https://img.shields.io/github/license/brittni-and-the-polar-bear/generative-art-library_base)](https://www.npmjs.com/package/@batpb/genart-base)
 
 [![Socket Badge](https://socket.dev/api/badge/npm/package/@batpb/genart-base)](https://socket.dev/npm/package/@batpb/genart-base)
 
@@ -26,4 +27,20 @@ Base classes and methods for the brittni and the polar bear [generative art libr
 
 ## LICENSE Information
 
-The source code of this project is licensed under the [GNU Affero General Public Version 3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html). The full text of the license can be found in the LICENSE file of the root directory.
+The source code of this project is licensed under the 
+[GNU Affero General Public Version 3.0 License](https://www.gnu.org/licenses/agpl-3.0.en.html). 
+The full text of the license can be found in the 
+[LICENSE file](https://github.com/brittni-and-the-polar-bear/generative-art-library_base/blob/v0.4.1/LICENSE) 
+of the root directory.
+
+----
+
+# Getting Started
+
+## Install with [npm](https://www.npmjs.com/)
+
+```shell
+npm install @batpb/genart-base
+```
+
+----
