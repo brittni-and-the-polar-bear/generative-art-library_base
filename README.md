@@ -3,7 +3,7 @@
 Copyright (C) 2023-2024 brittni and the polar bear LLC.
 
 Base classes and methods for the brittni and the polar bear 
-[generative art library](https://github.com/brittni-and-the-polar-bear/generative-art-library).
+[generative art library](https://brittni-and-the-polar-bear.github.io/generative-art-library/).
 
 ## Summary
 
