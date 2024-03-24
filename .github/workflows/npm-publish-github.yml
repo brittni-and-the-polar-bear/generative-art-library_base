@@ -3,9 +3,9 @@
 
 name: Node.js Package Publish to GitHub
 
-on:
-  release:
-    types: [created]
+on: workflow_dispatch
+#  release:
+#    types: [created]
 
 jobs:
   build:
