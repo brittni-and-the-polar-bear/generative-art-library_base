@@ -15,8 +15,8 @@
  * See the GNU Affero General Public License for more details.
  */
 
-import {Color} from "./color";
-import {Random} from "../random";
+import {Color} from './color';
+import {Random} from '../random';
 
 abstract class ColorSelector {
     private readonly _colorChoices: Color[] = [];
