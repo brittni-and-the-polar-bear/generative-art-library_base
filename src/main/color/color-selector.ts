@@ -18,6 +18,11 @@
 import {Color} from './color';
 import {Random} from '../random';
 
+enum ColorSelectorType {
+    Palette = 'palette color selector',
+    RGB = 'RGB color selector'
+}
+
 abstract class ColorSelector {
     private readonly _colorChoices: Color[] = [];
     private readonly _randomOrder: boolean;
@@ -33,7 +38,7 @@ abstract class ColorSelector {
 
     public abstract get colorNames(): string[];
 
-    public abstract get hasPalette(): boolean;
+    public abstract get type(): ColorSelectorType;
 
     public selectColorFromChoices(): Color {
         let col: Color;
@@ -57,4 +62,4 @@ abstract class ColorSelector {
     }
 }
 
-export {ColorSelector};
+export {ColorSelector, ColorSelectorType};
