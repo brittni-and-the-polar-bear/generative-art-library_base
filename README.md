@@ -1,3 +1,5 @@
+# WARNING: This is an INACTIVE repository!
+
 # [@batpb/genart-base](https://www.npmjs.com/package/@batpb/genart-base) - generative art library base package
 
 Copyright (C) 2023-2024 brittni and the polar bear LLC.
