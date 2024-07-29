@@ -1,4 +1,6 @@
-# WARNING: This is an INACTIVE repository!
+# WARNING: This package is DEPRECATED and the repository has been ARCHIVED.
+
+## The funcionality of this package has been moved to [@batpb/genart](https://www.npmjs.com/package/@batpb/genart) and the [generative-art-library repository](https://github.com/brittni-and-the-polar-bear/generative-art-library).
 
 # [@batpb/genart-base](https://www.npmjs.com/package/@batpb/genart-base) - generative art library base package
 
